@@ -1,5 +1,6 @@
 package core.main;
 
+import core.objects.Ball;
 import core.utils.Constants;
 import core.utils.KeyInput;
 
@@ -15,10 +16,21 @@ public class Main extends Canvas implements Runnable {
     private KeyInput keyInput;
     private Handler handler;
 
+    private Ball ball1;
+    private Ball ball2;
+
     public Main() {
         handler = new Handler();
         keyInput = new KeyInput(handler);
 
+        ball1 = new Ball(300f,269f, this, handler,16);
+        ball2 = new Ball(350f, 300f, this, handler, 16);
+
+        ball1.setVelX(.1f);
+        ball2.setVelX(-.1f);
+
+        handler.addObject(ball1);
+        handler.addObject(ball2);
         this.addKeyListener(keyInput);
 
         new Window(Constants.WIDTH, Constants.HEIGHT, "Particle Sim", this);
